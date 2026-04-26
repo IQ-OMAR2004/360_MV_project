@@ -1,0 +1,202 @@
+{
+  "vfd": [
+    {
+      "vendor": "ABB",
+      "model": "ACS6080",
+      "category": "MV VFD",
+      "voltage_kV": "3.0 – 6.6",
+      "power_MW": "5 – 36",
+      "topology": "Multilevel VSI, NPC, IGCT",
+      "highlights": [
+        "Active front end → unity PF, low THD",
+        "Direct Torque Control (DTC) with sensorless speed",
+        "Modular cabinet, hot-swappable IGCT stacks"
+      ],
+      "fit": "Recommended primary VFD: voltage band covers 4 kV directly without an output transformer.",
+      "indicative_price_usd": "≈ 350 000"
+    },
+    {
+      "vendor": "ABB",
+      "model": "ACS5000",
+      "category": "MV VFD",
+      "voltage_kV": "6.0 – 6.9",
+      "power_MW": "1.7 – 36",
+      "topology": "Five-level fuseless, water/air cooled",
+      "highlights": [
+        "12-pulse diode rectifier — low harmonics",
+        "Bypass cabinet allows DOL fallback",
+        "Air-cooled option suits workshop environment"
+      ],
+      "fit": "Alternate VFD candidate; would require an output stepdown if 4 kV bus is fixed.",
+      "indicative_price_usd": "≈ 410 000"
+    },
+    {
+      "vendor": "Siemens",
+      "model": "SINAMICS PERFECT HARMONY GH180",
+      "category": "MV VFD",
+      "voltage_kV": "2.3 – 13.8",
+      "power_MW": "0.3 – 100",
+      "topology": "Cell-based cascaded H-bridge, 18-pulse input",
+      "highlights": [
+        "IEEE-519 compliant input current THD < 4%",
+        "Sinusoidal output — kind to motor insulation",
+        "Cell-bypass: ride-through on single cell failure"
+      ],
+      "fit": "Strong second choice; harmonic performance excellent for a small generator source.",
+      "indicative_price_usd": "≈ 380 000"
+    },
+    {
+      "vendor": "Schneider Electric",
+      "model": "Altivar Process ATV6100",
+      "category": "MV VFD",
+      "voltage_kV": "2.4 – 11",
+      "power_MW": "0.3 – 10",
+      "topology": "Multilevel cascaded H-bridge",
+      "highlights": [
+        "EcoStruxure-ready, native Modbus/Profinet/Ethernet-IP",
+        "Built-in test mode — useful for the workshop application",
+        "Compact footprint vs. competing CHB drives"
+      ],
+      "fit": "Schneider option to round out the bid table.",
+      "indicative_price_usd": "≈ 360 000"
+    }
+  ],
+  "softStarter": [
+    {
+      "vendor": "ABB",
+      "model": "PSTX MV (with step-up)",
+      "category": "MV Soft Starter (thyristor)",
+      "voltage_kV": "0.4 (with TX to 4 kV)",
+      "power_MW": "Up to 2.0 (LV side)",
+      "topology": "Back-to-back thyristor, voltage ramp",
+      "highlights": [
+        "Smooth voltage ramp 30 → 100%",
+        "Built-in bypass contactor after acceleration",
+        "Lower CAPEX than VFD"
+      ],
+      "fit": "Acts only at start; cannot do no-load test at variable speed."
+    },
+    {
+      "vendor": "Siemens",
+      "model": "SIRIUS 3RW55 + step-up",
+      "category": "LV Soft Starter (translated to MV)",
+      "voltage_kV": "0.4",
+      "power_MW": "1.6",
+      "topology": "Thyristor with current limit + torque-control modes",
+      "highlights": [
+        "Torque-control ramp avoids mechanical jolts",
+        "Built-in motor protection",
+        "Ethernet/PROFINET communications"
+      ],
+      "fit": "Cheap and proven, but cannot perform variable-speed testing."
+    },
+    {
+      "vendor": "Schneider Electric",
+      "model": "Altistart ATS480",
+      "category": "LV Soft Starter",
+      "voltage_kV": "0.4",
+      "power_MW": "1.7",
+      "topology": "Torque-control thyristor starter",
+      "highlights": [
+        "TCS™ smooth-acceleration algorithm",
+        "Wireless commissioning via Bluetooth/HMI app",
+        "Compact (~½ width of equivalent VFD cabinet)"
+      ],
+      "fit": "Lowest CAPEX option; restricted to fixed-frequency commissioning only."
+    }
+  ],
+  "transformer": [
+    {
+      "vendor": "ABB",
+      "model": "DOL DTR — 2 MVA Distribution TX",
+      "category": "Step-up Transformer",
+      "rating": "2000 kVA, 0.4 / 4 kV, Dyn11, ONAN, %Z = 6%",
+      "highlights": [
+        "Mineral-oil filled, hermetically sealed",
+        "Protection: Buchholz, oil-temperature, pressure-relief",
+        "Standard IEC 60076 design"
+      ]
+    },
+    {
+      "vendor": "Siemens",
+      "model": "GEAFOL Cast-Resin 2 MVA",
+      "category": "Step-up Transformer (dry-type)",
+      "rating": "2000 kVA, 0.4 / 4 kV, Dyn11, AN cooling, %Z = 6%",
+      "highlights": [
+        "Dry, fire-safe — no oil",
+        "Indoor workshop deployment",
+        "20% higher CAPEX than oil-filled equivalent"
+      ]
+    },
+    {
+      "vendor": "Schneider Electric",
+      "model": "Trihal 2000 kVA",
+      "category": "Step-up Transformer (dry-type)",
+      "rating": "2000 kVA, 0.4 / 4 kV, Dyn11, %Z = 6%",
+      "highlights": [
+        "Class F insulation, fire-rated F1",
+        "Low partial discharge — long life on PWM duty",
+        "Suitable for indoor MV switchroom"
+      ]
+    }
+  ],
+  "switchgear": [
+    {
+      "vendor": "Schneider Electric",
+      "model": "PIX-12 MV Air-Insulated Switchgear",
+      "category": "MV Switchgear (4 kV)",
+      "rating": "12 kV, 25 kA / 1 s, 1250 A bus",
+      "highlights": [
+        "VCB with motor-rated breaker (Class C2/E2)",
+        "MicroLogic / Sepam 50/51, 27, 59, 87M, 49 protection",
+        "Truck-mounted CB, withdrawable"
+      ]
+    },
+    {
+      "vendor": "ABB",
+      "model": "UniGear ZS1",
+      "category": "MV Switchgear (4 kV)",
+      "rating": "12 kV, 31.5 kA / 3 s, 1250 / 2500 A",
+      "highlights": [
+        "Internal-arc-classified IAC AFLR",
+        "REF615 IED with 87M differential, 27/59 voltage, 50/51",
+        "Withdrawable VD4 vacuum breaker"
+      ]
+    },
+    {
+      "vendor": "Siemens",
+      "model": "NXAIR 12 kV",
+      "category": "MV Switchgear (4 kV)",
+      "rating": "12 kV, 25 kA / 3 s, 1250 A",
+      "highlights": [
+        "Air-insulated, withdrawable 3AH vacuum CB",
+        "SIPROTEC 7SK85 motor protection (49, 50, 51, 27, 59, 87M)",
+        "Compact, designed for industrial test bays"
+      ]
+    }
+  ],
+  "generator": [
+    {
+      "vendor": "Caterpillar",
+      "model": "C32 / SR5 — 1000 kVA",
+      "category": "Existing Diesel Genset (workshop)",
+      "rating": "1000 kVA, 400 V, 60 Hz, 0.8 PF, x_d'' ≈ 0.18 pu",
+      "highlights": [
+        "Reference unit assumed available on-site",
+        "Insufficient on its own for DOL or SS start",
+        "Adequate when paired with a VFD (≈ 70% loading)"
+      ]
+    },
+    {
+      "vendor": "Cummins",
+      "model": "C2500 D5 — 2500 kVA",
+      "category": "Recommended Diesel Genset",
+      "rating": "2500 kVA, 400 V, 60 Hz, 0.8 PF, x_d'' ≈ 0.18 pu",
+      "highlights": [
+        "Selected for the recommended VFD design",
+        "Loading at run: ≈ 72% — within continuous duty",
+        "AVR ride-through handles VFD inrush easily"
+      ]
+    }
+  ]
+}
