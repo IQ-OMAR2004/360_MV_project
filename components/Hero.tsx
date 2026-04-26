@@ -4,43 +4,69 @@ import { motion } from "framer-motion";
 import { MOTOR } from "@/lib/motor";
 
 const STATS = [
-  { value: "4", unit: "kV", label: "Motor Voltage" },
-  { value: "1551", unit: "kW", label: "Shaft Power" },
-  { value: "261", unit: "A", label: "Rated Current" },
-  { value: "6×", unit: "I_n", label: "Inrush" },
+  { value: "4",    unit: "kV",   label: "Motor Voltage" },
+  { value: "1551", unit: "kW",   label: "Shaft Power" },
+  { value: "261",  unit: "A",    label: "Rated Current" },
+  { value: "6",    unit: "×",    label: "DOL Inrush" },
 ];
 
 export function Hero() {
   return (
     <section
       id="top"
-      className="relative min-h-screen pt-20 pb-12 px-6 lg:px-12 overflow-hidden bg-grid"
+      className="relative min-h-screen pt-[70px] pb-0 overflow-hidden bg-black bg-grid"
     >
-      {/* Glow orbs */}
-      <div className="pointer-events-none absolute -top-40 left-1/3 w-[600px] h-[600px] rounded-full bg-electric/15 blur-[120px]" />
-      <div className="pointer-events-none absolute top-1/2 right-0 w-[500px] h-[500px] rounded-full bg-kfupm-glow/10 blur-[120px]" />
-      <div className="pointer-events-none absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-spark-orange/8 blur-[120px]" />
+      {/* Red glow at top */}
+      <div className="pointer-events-none absolute -top-60 left-1/2 -translate-x-1/2 w-[900px] h-[600px] rounded-full bg-[#EB1B26]/18 blur-[140px]" />
 
-      <div className="relative max-w-7xl mx-auto flex flex-col justify-center min-h-[calc(100vh-5rem)]">
+      {/* Grid overlay at very low opacity for depth */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage: "linear-gradient(rgba(235,27,38,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(235,27,38,0.04) 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+        }}
+      />
+
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-12 flex flex-col justify-center min-h-[calc(100vh-70px)] py-20">
+
+        {/* Eyebrow */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="badge bg-ink-800 text-electric border border-electric/30 self-start"
+          transition={{ duration: 0.5 }}
+          className="flex items-center gap-3 mb-8"
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-electric animate-pulse" />
-          EE360 — Term 252 · KFUPM Electrical Engineering
+          <span className="block w-8 h-[2px] bg-[#EB1B26]" />
+          <span className="text-[#EB1B26] text-xs font-black tracking-[0.2em] uppercase">
+            EE360 — Term 252 · KFUPM Electrical Engineering
+          </span>
         </motion.div>
 
+        {/* H1 */}
         <motion.h1
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="font-display mt-6 text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tight"
+          transition={{ duration: 0.65, delay: 0.1 }}
+          className="font-display font-black text-white leading-[0.92] tracking-[-0.03em]"
+          style={{ fontSize: "clamp(3.2rem, 9vw, 7.5rem)" }}
         >
-          From <span className="text-electric glow-text">400 V</span>
+          From{" "}
+          <span className="text-[#EB1B26]" style={{ textShadow: "0 0 40px rgba(235,27,38,0.4)" }}>
+            400 V
+          </span>
           <br />
-          to <span className="bg-spark-gradient bg-clip-text text-transparent">4 kV</span> —
+          to{" "}
+          <span
+            className="relative"
+            style={{
+              WebkitTextStroke: "2px #EB1B26",
+              color: "transparent",
+            }}
+          >
+            4 kV
+          </span>
+          {" "}—
           <br />
           <span className="text-white">Engineered.</span>
         </motion.h1>
@@ -48,65 +74,65 @@ export function Hero() {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.25 }}
-          className="mt-8 text-lg md:text-xl text-text-secondary max-w-2xl leading-relaxed"
+          transition={{ duration: 0.6, delay: 0.25 }}
+          className="mt-8 text-white/70 max-w-2xl leading-[1.65]"
+          style={{ fontSize: "clamp(1rem, 2vw, 1.2rem)" }}
         >
-          A complete medium-voltage test-power system for an{" "}
-          <span className="text-white font-medium">{MOTOR.manufacturer} {MOTOR.model}</span>{" "}
-          induction motor — bridging the workshop's 400 V diesel generator to the motor's
-          4 kV terminals. Designed, simulated, costed, and recommended.
+          A complete medium-voltage test-power system for the{" "}
+          <span className="text-white font-bold">{MOTOR.manufacturer} {MOTOR.model}</span>{" "}
+          induction motor — bridging the workshop's 400 V diesel generator to 4 kV.
+          Designed, simulated, costed, and delivered.
         </motion.p>
 
+        {/* CTA row */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.4 }}
+          transition={{ duration: 0.6, delay: 0.38 }}
           className="mt-10 flex flex-wrap gap-4"
         >
-          <a
-            href="#challenge"
-            className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold uppercase tracking-wider bg-electric text-ink-950 hover:bg-electric-300 transition-all shadow-glow-electric hover:shadow-glow-soft"
-          >
-            Explore the Design
-            <span aria-hidden>→</span>
+          <a href="#challenge" className="btn-red text-sm">
+            Explore the Design <span aria-hidden>→</span>
           </a>
-          <a
-            href="#recommendation"
-            className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold uppercase tracking-wider bg-ink-800 text-white border border-ink-600 hover:border-electric/50 transition-colors"
-          >
+          <a href="#recommendation" className="btn-ghost-red text-sm">
             See the Verdict
           </a>
         </motion.div>
 
-        {/* Hero stats */}
+        {/* ── Stats bar — Sparkon counter style ── */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.55 }}
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-px bg-ink-600 rounded-2xl overflow-hidden border border-ink-600"
+          transition={{ duration: 0.75, delay: 0.5 }}
+          className="mt-20 border-t-2 border-[#EB1B26]/60 grid grid-cols-2 md:grid-cols-4"
         >
-          {STATS.map((s) => (
-            <div key={s.label} className="bg-ink-900/80 backdrop-blur p-6 lg:p-8">
-              <div className="display-number text-4xl md:text-5xl lg:text-6xl text-white">
+          {STATS.map((s, i) => (
+            <div
+              key={s.label}
+              className={`py-8 px-6 lg:px-10 ${i < STATS.length - 1 ? "border-r border-white/10" : ""}`}
+            >
+              <div className="stat-number text-white">
                 {s.value}
-                <span className="text-electric text-2xl md:text-3xl ml-1">{s.unit}</span>
+                <span className="stat-unit">{s.unit}</span>
               </div>
-              <div className="mt-2 text-xs uppercase tracking-widest text-text-tertiary">
+              <div className="mt-2 text-[11px] uppercase tracking-[0.15em] text-white/50 font-bold">
                 {s.label}
               </div>
             </div>
           ))}
         </motion.div>
 
-        {/* scroll cue */}
+        {/* Scroll cue */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.6 }}
-          className="mt-16 flex items-center gap-3 text-text-tertiary text-xs uppercase tracking-widest"
+          transition={{ delay: 1.1, duration: 0.6 }}
+          className="mt-12 flex items-center gap-3"
         >
-          <span className="block w-12 h-px bg-electric/40" />
-          Where Power Meets Precision
+          <span className="block w-10 h-[2px] bg-[#EB1B26]" />
+          <span className="text-[11px] tracking-[0.2em] uppercase text-white/40 font-bold">
+            Where Power Meets Precision
+          </span>
         </motion.div>
       </div>
     </section>

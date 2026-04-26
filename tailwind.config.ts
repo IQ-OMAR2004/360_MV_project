@@ -8,68 +8,74 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // SparkOn-inspired industrial dark palette
+        // Sparkon KFUPM official palette
+        sparkon: {
+          red: "#EB1B26",
+          "red-dark": "#C41520",
+          "red-dim": "rgba(235,27,38,0.15)",
+        },
         ink: {
-          950: "#0A0A0A",
-          900: "#111418",
-          850: "#13171C",
+          950: "#000000",
+          900: "#0D1117",
+          850: "#111418",
           800: "#161A1F",
           700: "#1B2026",
           600: "#262A30",
           500: "#3A4049",
         },
+        // Keep electric alias pointing to Sparkon Red so existing refs auto-update
         electric: {
-          DEFAULT: "#00E0FF",
-          50: "#E5FBFF",
-          100: "#B8F4FF",
-          300: "#5EE9FF",
-          500: "#00E0FF",
-          600: "#00B8D4",
-          700: "#0093A8",
+          DEFAULT: "#EB1B26",
+          50: "#FEECEC",
+          100: "#FCDCDC",
+          300: "#F58085",
+          500: "#EB1B26",
+          600: "#C41520",
+          700: "#9C1018",
         },
         kfupm: {
-          green: "#006A4E",
-          glow: "#00B47C",
+          green: "#4BA181",  // teal/mint from style guide (Weglot accent)
+          glow: "#4BA181",
         },
         spark: {
-          orange: "#FF7A00",
-          amber: "#FFB347",
+          orange: "#EB1B26",  // re-map to Sparkon red for consistency
+          amber: "#FF5A5F",
         },
         text: {
           primary: "#FFFFFF",
-          secondary: "#B8BFC7",
-          tertiary: "#7A828D",
+          secondary: "rgba(255,255,255,0.75)",
+          tertiary: "rgba(255,255,255,0.45)",
         },
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-        display: ["Space Grotesk", "Inter", "sans-serif"],
-        mono: ["JetBrains Mono", "Space Mono", "monospace"],
+        // DM Sans = closest free alternative to Helvetica Neue display weight
+        sans: ["DM Sans", "Inter", "Arial", "Helvetica", "sans-serif"],
+        display: ["DM Sans", "Arial", "Helvetica", "sans-serif"],
+        mono: ["JetBrains Mono", "IBM Plex Mono", "monospace"],
       },
       backgroundImage: {
-        "grid-electric":
-          "linear-gradient(rgba(0,224,255,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(0,224,255,0.07) 1px, transparent 1px)",
-        "radial-glow":
-          "radial-gradient(circle at 50% 0%, rgba(0,224,255,0.15) 0%, transparent 60%)",
-        "spark-gradient":
-          "linear-gradient(135deg, #00E0FF 0%, #00B47C 100%)",
+        "spark-gradient": "linear-gradient(135deg, #EB1B26 0%, #C41520 100%)",
+        "red-glow":
+          "radial-gradient(ellipse 80% 60% at 50% -10%, rgba(235,27,38,0.22) 0%, transparent 60%)",
+        "grid-dark":
+          "linear-gradient(rgba(235,27,38,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(235,27,38,0.07) 1px, transparent 1px)",
       },
       boxShadow: {
-        "glow-electric": "0 0 24px rgba(0, 224, 255, 0.35)",
-        "glow-soft": "0 0 60px rgba(0, 224, 255, 0.18)",
-        "glow-amber": "0 0 24px rgba(255, 122, 0, 0.45)",
-        "glow-green": "0 0 24px rgba(0, 180, 124, 0.45)",
-        "card": "0 4px 20px rgba(0, 0, 0, 0.45)",
+        "glow-red": "0 0 24px rgba(235, 27, 38, 0.50)",
+        "glow-soft": "0 0 60px rgba(235, 27, 38, 0.20)",
+        "glow-electric": "0 0 24px rgba(235, 27, 38, 0.50)",
+        "glow-amber": "0 0 24px rgba(235, 27, 38, 0.45)",
+        "glow-green": "0 0 24px rgba(75, 161, 129, 0.40)",
+        card: "0 4px 24px rgba(0, 0, 0, 0.60)",
       },
       animation: {
-        "pulse-glow": "pulse-glow 2.4s ease-in-out infinite",
-        "slow-spin": "spin 12s linear infinite",
+        "pulse-red": "pulse-red 2.4s ease-in-out infinite",
         "current-flow": "current-flow 3s linear infinite",
       },
       keyframes: {
-        "pulse-glow": {
-          "0%, 100%": { opacity: "1", filter: "drop-shadow(0 0 6px rgba(0,224,255,0.6))" },
-          "50%": { opacity: "0.6", filter: "drop-shadow(0 0 12px rgba(0,224,255,0.9))" },
+        "pulse-red": {
+          "0%, 100%": { opacity: "1", filter: "drop-shadow(0 0 6px rgba(235,27,38,0.7))" },
+          "50%": { opacity: "0.65", filter: "drop-shadow(0 0 14px rgba(235,27,38,1))" },
         },
         "current-flow": {
           "0%": { strokeDashoffset: "40" },

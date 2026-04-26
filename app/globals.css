@@ -2,139 +2,179 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap");
+/* Sparkon-style fonts — DM Sans (Helvetica Neue alternative) + JetBrains Mono */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;0,9..40,800;0,9..40,900;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap");
 
 :root {
+  --sparkon-red: #EB1B26;
+  --sparkon-red-dark: #C41520;
   color-scheme: dark;
 }
 
-html,
-body {
-  background-color: #0A0A0A;
+html, body {
+  background-color: #000000;
   color: #FFFFFF;
-  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-family: "DM Sans", Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   background-image:
-    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(0, 224, 255, 0.10) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 90% 30%, rgba(0, 180, 124, 0.06) 0%, transparent 60%),
-    linear-gradient(180deg, #0A0A0A 0%, #111418 60%, #0A0A0A 100%);
+    radial-gradient(ellipse 80% 60% at 50% -5%, rgba(235, 27, 38, 0.12) 0%, transparent 55%);
   background-attachment: fixed;
   min-height: 100vh;
 }
 
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-::-webkit-scrollbar-track {
-  background: #0A0A0A;
-}
+/* Scrollbar — Sparkon Red */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #000000; }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #00E0FF 0%, #00B47C 100%);
-  border-radius: 6px;
-  border: 2px solid #0A0A0A;
+  background: linear-gradient(180deg, #EB1B26 0%, #C41520 100%);
+  border-radius: 0;            /* sharp, matching Sparkon style */
+  border: 2px solid #000000;
 }
 
-/* Section base */
-section {
-  scroll-margin-top: 80px;
-}
+section { scroll-margin-top: 72px; }
 
-/* Glow text utility */
+/* ── Glow text ── */
 .glow-text {
-  text-shadow:
-    0 0 12px rgba(0, 224, 255, 0.55),
-    0 0 24px rgba(0, 224, 255, 0.25);
+  text-shadow: 0 0 12px rgba(235,27,38,0.6), 0 0 28px rgba(235,27,38,0.3);
 }
-
-.glow-text-amber {
-  text-shadow:
-    0 0 12px rgba(255, 122, 0, 0.55),
-    0 0 24px rgba(255, 122, 0, 0.25);
-}
-
 .glow-text-green {
-  text-shadow:
-    0 0 12px rgba(0, 180, 124, 0.55),
-    0 0 24px rgba(0, 180, 124, 0.25);
+  text-shadow: 0 0 12px rgba(75,161,129,0.55), 0 0 24px rgba(75,161,129,0.25);
 }
 
-/* Subtle grid background for hero / dashboards */
+/* ── Red background sections ── */
+.section-red {
+  background-color: var(--sparkon-red);
+}
+.section-red .text-text-secondary { color: rgba(255,255,255,0.85); }
+.section-red .text-text-tertiary  { color: rgba(255,255,255,0.60); }
+
+/* ── Dark grid pattern ── */
 .bg-grid {
   background-image:
-    linear-gradient(rgba(0, 224, 255, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 224, 255, 0.045) 1px, transparent 1px);
+    linear-gradient(rgba(235, 27, 38, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(235, 27, 38, 0.06) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 
-/* Card primitive */
+/* ── Card — Sparkon dark ── */
 .card {
-  background-color: #161A1F;
-  border: 1px solid #262A30;
-  border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
+  background-color: #0D1117;
+  border: 1px solid #1B2026;
+  border-radius: 4px;          /* very subtle radius — Sparkon uses near-sharp */
+  box-shadow: 0 4px 24px rgba(0,0,0,0.6);
   transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
 }
-
 .card:hover {
-  border-color: rgba(0, 224, 255, 0.45);
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.55),
-    0 0 24px rgba(0, 224, 255, 0.18);
+  border-color: rgba(235,27,38,0.5);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.65), 0 0 24px rgba(235,27,38,0.20);
 }
-
 .card-static {
-  background-color: #161A1F;
-  border: 1px solid #262A30;
-  border-radius: 16px;
+  background-color: #0D1117;
+  border: 1px solid #1B2026;
+  border-radius: 4px;
 }
 
-/* Divider */
+/* ── Divider — dashed red (matches Sparkon timeline) ── */
 .divider-glow {
-  height: 1px;
+  height: 2px;
   background: linear-gradient(
     to right,
     transparent 0%,
-    rgba(0, 224, 255, 0.4) 25%,
-    rgba(0, 180, 124, 0.4) 75%,
+    rgba(235,27,38,0.6) 20%,
+    rgba(235,27,38,0.6) 80%,
     transparent 100%
   );
-  box-shadow: 0 0 12px rgba(0, 224, 255, 0.3);
+  box-shadow: 0 0 10px rgba(235,27,38,0.3);
 }
 
-/* Display number */
+.divider-dashed {
+  border: none;
+  border-top: 2px dashed rgba(235,27,38,0.4);
+}
+
+/* ── Display number ── */
 .display-number {
-  font-family: "JetBrains Mono", "Space Mono", monospace;
+  font-family: "JetBrains Mono", "IBM Plex Mono", monospace;
   font-weight: 600;
   letter-spacing: -0.02em;
 }
 
-/* Badge */
+/* ── Badge ── */
 .badge {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.25rem 0.75rem;
-  border-radius: 9999px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
+  padding: 0.25rem 0.875rem;
+  border-radius: 0;            /* sharp corners — Sparkon style */
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
+  border: 1px solid;
 }
 
-/* SLD line animation */
+/* ── SLD animated flow ── */
 @keyframes flow {
-  to {
-    stroke-dashoffset: -100;
-  }
+  to { stroke-dashoffset: -100; }
+}
+.flow-line {
+  stroke-dasharray: 8 6;
+  animation: flow 2.5s linear infinite;
 }
 
-.flow-line {
-  stroke-dasharray: 6 6;
-  animation: flow 3.5s linear infinite;
+/* ── Large stat number (Sparkon counter style) ── */
+.stat-number {
+  font-family: "DM Sans", Arial, Helvetica, sans-serif;
+  font-size: clamp(3.5rem, 8vw, 6rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.stat-unit {
+  color: var(--sparkon-red);
+  font-weight: 900;
+}
+
+/* ── Sparkon-style sharp CTA button ── */
+.btn-red {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--sparkon-red);
+  color: #FFFFFF;
+  font-family: "DM Sans", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.875rem 2rem;
+  border-radius: 0;            /* sharp corners */
+  transition: background-color 150ms, box-shadow 150ms;
+}
+.btn-red:hover {
+  background-color: var(--sparkon-red-dark);
+  box-shadow: 0 0 24px rgba(235,27,38,0.5);
+}
+.btn-ghost-red {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: rgba(235,27,38,0.12);
+  color: var(--sparkon-red);
+  border: 1px solid var(--sparkon-red);
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.875rem 2rem;
+  border-radius: 0;
+  transition: background-color 150ms, box-shadow 150ms;
+}
+.btn-ghost-red:hover {
+  background-color: rgba(235,27,38,0.22);
+  box-shadow: 0 0 16px rgba(235,27,38,0.35);
 }

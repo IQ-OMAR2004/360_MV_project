@@ -11,7 +11,14 @@ interface SectionProps {
   children: ReactNode;
   className?: string;
   align?: "left" | "center";
+  variant?: "dark" | "red" | "darker";
 }
+
+const variantClass: Record<NonNullable<SectionProps["variant"]>, string> = {
+  dark:   "bg-black",
+  darker: "bg-[#0D1117]",
+  red:    "section-red bg-[#EB1B26]",
+};
 
 export function Section({
   id,
@@ -21,9 +28,12 @@ export function Section({
   children,
   className = "",
   align = "left",
+  variant = "dark",
 }: SectionProps) {
+  const bg = variantClass[variant];
+
   return (
-    <section id={id} className={`relative py-24 lg:py-32 px-6 lg:px-12 ${className}`}>
+    <section id={id} className={`relative py-24 lg:py-32 px-6 lg:px-12 ${bg} ${className}`}>
       <div className="max-w-7xl mx-auto">
         {(eyebrow || title || subtitle) && (
           <motion.div
@@ -34,18 +44,34 @@ export function Section({
             className={`mb-14 ${align === "center" ? "text-center mx-auto max-w-3xl" : "max-w-3xl"}`}
           >
             {eyebrow && (
-              <div className={`badge bg-electric/10 text-electric border border-electric/20 mb-5 ${align === "center" ? "mx-auto" : ""}`}>
-                <span className="w-1.5 h-1.5 rounded-full bg-electric animate-pulse" />
-                {eyebrow}
+              <div className={`flex items-center gap-3 mb-5 ${align === "center" ? "justify-center" : ""}`}>
+                <span className="block w-6 h-[2px] bg-[#EB1B26]" />
+                <span
+                  className="text-[11px] font-black uppercase tracking-[0.18em]"
+                  style={{ color: variant === "red" ? "rgba(255,255,255,0.85)" : "#EB1B26" }}
+                >
+                  {eyebrow}
+                </span>
               </div>
             )}
             {title && (
-              <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white">
+              <h2
+                className="font-display font-black leading-[0.95] tracking-tight text-white"
+                style={{ fontSize: "clamp(2.4rem, 5.5vw, 4.5rem)" }}
+              >
                 {title}
               </h2>
             )}
             {subtitle && (
-              <p className="mt-5 text-lg text-text-secondary leading-relaxed">{subtitle}</p>
+              <p
+                className="mt-5 leading-[1.65]"
+                style={{
+                  fontSize: "clamp(0.95rem, 1.5vw, 1.1rem)",
+                  color: variant === "red" ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.65)",
+                }}
+              >
+                {subtitle}
+              </p>
             )}
           </motion.div>
         )}
@@ -55,10 +81,16 @@ export function Section({
   );
 }
 
-export function SectionDivider() {
+export function SectionDivider({ dashed = false }: { dashed?: boolean }) {
   return (
-    <div className="max-w-7xl mx-auto px-6 lg:px-12">
-      <div className="divider-glow" />
+    <div className="bg-black">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        {dashed ? (
+          <div className="divider-dashed" />
+        ) : (
+          <div className="divider-glow" />
+        )}
+      </div>
     </div>
   );
 }
