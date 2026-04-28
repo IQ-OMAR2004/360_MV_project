@@ -1,22 +1,28 @@
 /** @type {import('next').NextConfig} */
+
+// On GitHub Actions, GITHUB_REPOSITORY is "<owner>/<name>".
+// We derive the GH-Pages sub-path from the repo name so basePath matches
+// "https://<owner>.github.io/<name>/" automatically.
+//   Local `npm run dev` / `npm run build`        → basePath ""
+//   `actions/configure-pages` build (auto-inject) → basePath "/<name>"
+//   Manual override                              → NEXT_PUBLIC_BASE_PATH=...
+const repoName =
+  (process.env.GITHUB_REPOSITORY || "").split("/")[1] || "";
+const basePath =
+  process.env.NEXT_PUBLIC_BASE_PATH ??
+  (process.env.GITHUB_ACTIONS === "true" && repoName ? `/${repoName}` : "");
+
 const nextConfig = {
   reactStrictMode: true,
 
   // ── Static export for GitHub Pages ─────────────────────────────────────
-  // Produces a fully static `out/` directory — what the
-  // `actions/upload-pages-artifact` step uploads.
   output: "export",
-
-  // GitHub Pages can't run the Next.js image optimiser.
   images: { unoptimized: true },
-
-  // Trailing slashes generate /path/index.html files which GH Pages serves
-  // cleanly without any URL rewrite rules.
   trailingSlash: true,
 
-  // basePath / assetPrefix are auto-injected at build time by
-  // `actions/configure-pages@v5` based on the repo slug, so we don't hard-
-  // code "/360_MV_project" here — that would break local `npm run dev`.
+  // ── Sub-path for GitHub Pages (preserves localhost dev) ────────────────
+  basePath,
+  assetPrefix: basePath || undefined,
 };
 
 export default nextConfig;
